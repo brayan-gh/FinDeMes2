@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Control de Calidad de Frijoles</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 40px; }
+        .container { background: #fff; padding: 20px 40px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+        h1 { color: #333; }
+        form { display: flex; flex-direction: column; }
+        label { margin-top: 15px; font-weight: bold; }
+        input { padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid #ddd; }
+        button { background-color: #007bff; color: white; padding: 12px; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        .prediction { margin-top: 25px; padding: 15px; background-color: #e6f7ff; border-left: 5px solid #007bff; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Control de Calidad por Atributos Geométricos</h1>
+        <p><b>Esta herramienta usa un modelo de regresión para estimar el tamaño de un frijol y verificar si cumple con los estándares de calidad.</b></p>
+        
+        <form action="/predict" method="post">
+            <label for="AspectRation">Aspect Ratio:</label>
+            <input type="number" step="any" id="AspectRation" name="AspectRation" required>
+            
+            <label for="Compactness">Compactness:</label>
+            <input type="number" step="any" id="Compactness" name="Compactness" required>
+            
+            <label for="ShapeFactor1">Shape Factor 1:</label>
+            <input type="number" step="any" id="ShapeFactor1" name="ShapeFactor1" required>
+
+            <label for="ShapeFactor2">Shape Factor 2:</label>
+            <input type="number" step="any" id="ShapeFactor2" name="ShapeFactor2" required>
+
+            <label for="ShapeFactor3">Shape Factor 3:</label>
+            <input type="number" step="any" id="ShapeFactor3" name="ShapeFactor3" required>
+
+            <label for="ShapeFactor4">Shape Factor 4:</label>
+            <input type="number" step="any" id="ShapeFactor4" name="ShapeFactor4" required>
+            
+            <button type="submit"><b>Verificar Calidad</b></button>
+        </form>
+        
+        {% if texto_resultado %}
+        <div class="prediction">
+            <p>{{ texto_resultado | safe }}</p>
+            <p>{{ texto_verificacion | safe }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
